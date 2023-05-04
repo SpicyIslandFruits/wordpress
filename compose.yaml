@@ -1,6 +1,7 @@
 services:
   swag:
     image: lscr.io/linuxserver/swag:latest
+    restart: always
     cap_add:
       - NET_ADMIN
     environment:
@@ -11,24 +12,31 @@ services:
       - VALIDATION=http
       - SUBDOMAINS=wordpress
     volumes:
-      - ./default.conf:/config/nginx/site-confs/default.conf
+      - config:/config
+      - default.conf:/config/nginx/site-confs/default.conf
     ports:
       - 443:443
       - 80:80
 
   wordpress:
-    image: wordpress
+    image: wordpress:latest
+    restart: always
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - wp-content:/var/www/html/wp-content
     ports:
       - 8080:80
 
   db:
-    image: mariadb
+    image: mariadb:latest
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
