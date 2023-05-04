@@ -12,8 +12,8 @@ services:
       - VALIDATION=http
       - SUBDOMAINS=wordpress
     volumes:
-      - config:/config
-      - default.conf:/config/nginx/site-confs/default.conf
+      - ./config:/config
+      - ./default.conf:/config/nginx/site-confs/default.conf
     ports:
       - 443:443
       - 80:80
@@ -26,7 +26,7 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - wp-content:/var/www/html/wp-content
+      - ./wp-content:/var/www/html/wp-content
     ports:
       - 8080:80
 
@@ -39,4 +39,4 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql

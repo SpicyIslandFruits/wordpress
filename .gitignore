@@ -1,3 +1,6 @@
 /.env
 wordpress.iml
 /.idea
+/config
+/db_data
+/wp-content
