@@ -9,4 +9,4 @@
 3. `docker compose --env-file .env up -d`を実行
 4. ポート8080に接続してwordpressをインストール
 5. 設定からURLを`http://wordpress.<duckdnsで取得したurl>`に設定
-6. Toolsからhttpsにアップデート
+6. ToolsのSite Healthからhttpsにアップデート
