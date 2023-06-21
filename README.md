@@ -2,7 +2,7 @@
 1. duckdnsでドメイン取得
 2. 以下のような.envファイルを作成
    ```
-    URL=url
+    URL=<duckdnsで取得したurl>
     MYSQL_ROOT_PASSWORD=password1
     MYSQL_PASSWORD=password2
     ```
